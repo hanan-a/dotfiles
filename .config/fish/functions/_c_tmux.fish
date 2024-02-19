@@ -1,4 +1,4 @@
-function _c_fish
+function _c_tmux
 end
 
 function ta
