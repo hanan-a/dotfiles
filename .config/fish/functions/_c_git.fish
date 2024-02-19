@@ -1,5 +1,4 @@
 function _c_git
-    g
 end
 
 function g
