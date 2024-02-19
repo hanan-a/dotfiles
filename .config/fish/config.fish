@@ -5,5 +5,7 @@ export NVM_DIR="$HOME/.nvm"
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
+
+custom_functions
 starship init fish | source
 zoxide init fish | source
