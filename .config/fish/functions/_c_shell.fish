@@ -10,6 +10,6 @@ function la --description 'List all files'
 end
 
 function hosts --description 'Edit hosts file'
-    cd ~/../../etc && nvim hosts
+    cd ~/../../etc && sudo nvim hosts
 end
 
