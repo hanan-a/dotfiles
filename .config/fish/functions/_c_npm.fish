@@ -15,3 +15,8 @@ function ncheck
     echo "Lint & Test npm..."
     npm run lint && npm run test
 end
+
+function ns
+    echo "npm start..."
+    npm start
+end
