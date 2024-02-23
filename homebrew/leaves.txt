@@ -1,0 +1,14 @@
+bat
+fd
+fish
+fzf
+jq
+lazygit
+neovim
+ripgrep
+starship
+stow
+tldr
+tmux
+tree
+zoxide
