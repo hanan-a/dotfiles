@@ -20,6 +20,7 @@ Make sure to install [GNU stow](https://www.gnu.org/software/stow/).
 ```shell
 brew install stow
 ```
+Then symnlink the files to the home dir `~`
 
 ```shell
 stow -vt ~ .
