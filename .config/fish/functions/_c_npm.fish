@@ -20,3 +20,12 @@ function ns --description "npm start"
     echo "npm start..."
     npm start
 end
+
+function fscripts --description "FZF npm scripts"
+    npm run | fzf
+end
+
+function nscripts --description "List npm scripts"
+    jq '.scripts' package.json | jq -r 'keys[]'
+end
+
