@@ -12,7 +12,7 @@ This command uses the `homebrew/leaves.txt` file to list the needed packages.
 xargs brew install < ./homebrew/leaves.txt
 ```
 
-## Symlink files into the `~` directory using __stow__:
+## Symlink files into the `~` directory using stow:
 ---
 
 Make sure to install [GNU stow](https://www.gnu.org/software/stow/).
@@ -68,5 +68,6 @@ fisher install jorgebucaran/nvm.fish
 ```shell
 set --universal nvm_default_version 18
 ```
+
 
 
