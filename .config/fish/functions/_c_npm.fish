@@ -1,22 +1,22 @@
 function _c_npm
 end
 
-function ni
+function ni --description "Install npm packages"
     echo "Installing npm packages..."
     npm install
 end
 
-function nif
+function nif --description "Force install npm packages"
     echo "Force installing npm packages..."
     npm install --force
 end
 
-function ncheck
+function ncheck --description "npm lint & test"
     echo "Lint & Test npm..."
     npm run lint && npm run test
 end
 
-function ns
+function ns --description "npm start"
     echo "npm start..."
     npm start
 end
