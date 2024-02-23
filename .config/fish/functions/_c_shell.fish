@@ -13,3 +13,14 @@ function hosts --description 'Edit hosts file'
     cd ~/../../etc && sudo nvim hosts
 end
 
+function compgen --description 'List all commands'
+    complete -C
+end
+
+function fcompgen --description 'FZF all commands'
+    fcomplete
+end
+
+function fcomplete --description 'FZF all commands'
+    complete -C | fzf
+end
