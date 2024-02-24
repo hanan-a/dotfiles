@@ -13,7 +13,6 @@ xargs brew install < ./homebrew/leaves.txt
 ```
 
 ## Symlink files into the `~` directory using stow:
----
 
 Make sure to install [GNU stow](https://www.gnu.org/software/stow/).
 
