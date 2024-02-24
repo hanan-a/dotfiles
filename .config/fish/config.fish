@@ -10,3 +10,5 @@ fish_vi_key_bindings
 custom_functions
 starship init fish | source
 zoxide init fish | source
+
+thefuck --alias | source
