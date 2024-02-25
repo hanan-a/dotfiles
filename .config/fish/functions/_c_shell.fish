@@ -24,3 +24,7 @@ end
 function fcomplete --description 'FZF all commands'
     complete -C | fzf
 end
+
+function fhis --description 'FZF history'
+    history | fzf
+end
