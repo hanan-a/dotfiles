@@ -37,3 +37,52 @@ function wtclone --description "Clone for worktree"
 
     git fetch origin
 end
+
+function wtadd --description "Add a worktree"
+    # Examples of call:
+    # wtadd feat/branch 
+    # => Adds a worktree to the repo/feat/branch  directory
+    # If the branch is not found, it will be created
+    set branch $argv[1]
+    set path $argv[2]
+    if test -z $branch
+        echo "Branch name is required"
+        return
+    end
+
+    if test -z $path
+        set path ./$branch
+    else
+        set path ../$branch
+    end
+
+
+    # Check if branch exists
+    if test -z (git branch --list $branch)
+        echo "Creating worktree for new branch $branch at $path..."
+        git worktree add -b $branch $path
+    else
+        echo "Creating worktree for existing branch $branch at $path..."
+        git worktree add $path $branch
+    end
+end
+
+function wtremove --description "Remove a worktree"
+    # Examples of call:
+    # wtremove feat/branch 
+    # => Removes the worktree at repo/feat/branch
+    set branch $argv[1]
+    set path $argv[2]
+    if test -z $branch
+        echo "Branch name is required"
+        return
+    end
+
+    # Find the path for the existing worktree based on the branch name
+    if test -z $path
+        set path (git worktree list | grep $branch | awk '{print $1}')
+    end
+
+    echo "Removing worktree for branch $branch at $path..."
+    git worktree remove $path
+end
