@@ -17,5 +17,8 @@ fi
 
 echo "Dotfiles installation running..."
 
+echo "Installing Homebrew packages..."
+xargs brew install < ./homebrew/leaves.txt
+
 echo "Stowing dotfiles..."
 stow -vt ~ .config zsh 
