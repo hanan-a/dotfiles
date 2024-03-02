@@ -9,16 +9,16 @@ if [ "$(pwd)" != "$SCRIPT_DIR" ]; then
     exit 1
 fi
 
+echo "Dotfiles installation running..."
+
+echo "Installing Homebrew packages..."
+xargs brew install < ./homebrew/leaves.txt
+
 # Stop if stow is not installed
 if ! [ -x "$(command -v stow)" ]; then
   echo "Error: stow is not installed." >&2
   exit 1
 fi
-
-echo "Dotfiles installation running..."
-
-echo "Installing Homebrew packages..."
-xargs brew install < ./homebrew/leaves.txt
 
 echo "Setting FishShell as default shell..."
 # if fish is already in /etc/shells, don't add it again
@@ -27,7 +27,8 @@ if ! grep -q "/usr/local/bin/fish" /etc/shells; then
 fi
 
 echo "Stowing dotfiles..."
-stow -vt ~ .config zsh 
+stow -vt ~ . zsh 
+stow -vt ~/.config .config  
 
 # if fish is not the default shell, change it
 if [ "$SHELL" != "/opt/homebrew/bin/fish" ]; then
