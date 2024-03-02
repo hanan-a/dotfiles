@@ -6,7 +6,7 @@ function cls --description 'Clear the terminal'
 end
 
 function la --description 'List all files'
-    ls -al
+    eza -al --icons
 end
 
 function hosts --description 'Edit hosts file'
