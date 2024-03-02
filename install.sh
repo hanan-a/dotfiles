@@ -20,5 +20,21 @@ echo "Dotfiles installation running..."
 echo "Installing Homebrew packages..."
 xargs brew install < ./homebrew/leaves.txt
 
+echo "Setting FishShell as default shell..."
+# if fish is already in /etc/shells, don't add it again
+if ! grep -q "/usr/local/bin/fish" /etc/shells; then
+  echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
+fi
+
+# if fish is not the default shell, change it
+if [ "$SHELL" != "/opt/homebrew/bin/fish" ]; then
+  echo "Changing default shell to fish..."
+  chsh -s /usr/local/bin/fish
+else
+  echo "Fish is already the default shell."
+fi
+
+
+
 echo "Stowing dotfiles..."
 stow -vt ~ .config zsh 
