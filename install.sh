@@ -26,6 +26,9 @@ if ! grep -q "/usr/local/bin/fish" /etc/shells; then
   echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
 fi
 
+echo "Stowing dotfiles..."
+stow -vt ~ .config zsh 
+
 # if fish is not the default shell, change it
 if [ "$SHELL" != "/opt/homebrew/bin/fish" ]; then
   echo "Changing default shell to fish..."
@@ -34,7 +37,17 @@ else
   echo "Fish is already the default shell."
 fi
 
+echo "Intalling Fisher..."
+if ! [ -x "$(command -v fisher)" ]; then
+  curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+else
+  echo "Fisher is already installed."
+fi
+
+echo "Installing NVM using Fisher..."
+fisher install jorgebucaran/nvm.fish
+echo "Setting NVM default version to 18..."
+set --universal nvm_default_version 18
 
 
-echo "Stowing dotfiles..."
-stow -vt ~ .config zsh 
+echo "Dotfiles installation complete. Enjoy!"
