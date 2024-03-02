@@ -3,6 +3,14 @@
 # Installation (MacOS)
 ---
 
+Run the _install.sh_ file from within the _dotfiles_ directory.
+It will install all Homebrew dependencies and symlink all needed files.
+
+```shell
+bash install.sh
+```
+
+---
 
 Install Homebrew packages
 ---
