@@ -3,6 +3,7 @@ entr
 eza
 fd
 fish
+fx
 fzf
 gnu-sed
 jq
@@ -13,6 +14,7 @@ ripgrep
 starship
 stow
 thefuck
+tig
 tldr
 tmux
 tree
