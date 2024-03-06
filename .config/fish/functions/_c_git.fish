@@ -86,3 +86,7 @@ function wtremove --description "Remove a worktree"
     echo "Removing worktree for branch $branch at $path..."
     git worktree remove $path
 end
+
+function gblist --description "FZF List all branches"
+    git branch -a | fzf --reverse
+end
