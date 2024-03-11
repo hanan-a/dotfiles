@@ -16,6 +16,10 @@ function ncheck --description "npm lint & test"
     npm run lint && npm run test
 end
 
+function nC --description "npm run lint & test"
+    ncheck
+end
+
 function ns --description "npm start"
     echo "npm start..."
     npm start
