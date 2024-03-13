@@ -28,3 +28,7 @@ end
 function fhis --description 'FZF history'
     history | fzf
 end
+
+function cat --description 'Cat with bat'
+    bat $argv
+end
