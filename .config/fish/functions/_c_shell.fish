@@ -32,3 +32,8 @@ end
 function cat --description 'Cat with bat'
     bat $argv
 end
+
+
+function lg --description 'lazygit'
+    lazygit
+end
