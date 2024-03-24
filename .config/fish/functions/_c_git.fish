@@ -15,6 +15,10 @@ function gP --description "Alias for git push"
     git push
 end
 
+function wlist --description "List all worktrees"
+    git worktree list
+end
+
 function wtclone --description "Clone for worktree"
     # Examples of call:
     # wtclone git@github.com:name/repo.git
