@@ -16,7 +16,7 @@ function gP --description "Alias for git push"
 end
 
 function wlist --description "List all worktrees"
-    git worktree list
+    git worktree list | fzf --reverse
 end
 
 function wtclone --description "Clone for worktree"
