@@ -5,6 +5,14 @@ function g --description "Alias for git"
     git
 end
 
+function gf --description "Alias for git fetch"
+    git fetch
+end
+
+function gs --description "Alias for git status"
+    git status
+end
+
 function gp --description "Alias for git pull"
     echo "Pulling..."
     git pull
