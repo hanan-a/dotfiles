@@ -20,6 +20,12 @@ end
 
 function gP --description "Alias for git push"
     echo "Pushing..."
+    # If the current branch is main or master, abort the push with a message
+    if test (git branch --show-current) = "main" -o (git branch --show-current) = "master"
+        echo "You are trying to push to the main or master branch. Aborting... Please use a feature branch."
+        return
+    end
+
     git push
 end
 
