@@ -5,6 +5,10 @@ function cls --description 'Clear the terminal'
     clear
 end
 
+function xx --description 'Exit the terminal'
+    exit
+end
+
 function la --description 'List all files'
     eza -al --icons
 end
