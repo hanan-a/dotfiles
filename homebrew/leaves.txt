@@ -5,11 +5,15 @@ fd
 fish
 fx
 fzf
+gh
+glow
 gnu-sed
 jq
 lazygit
 lf
 neovim
+pipx
+pyenv
 ripgrep
 starship
 stow
