@@ -6,10 +6,12 @@ function g --description "Alias for git"
 end
 
 function gf --description "Alias for git fetch"
+    echo "Fetching..."
     git fetch
 end
 
 function gs --description "Alias for git status"
+    echo "Git Status: "
     git status
 end
 
