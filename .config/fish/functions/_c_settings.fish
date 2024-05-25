@@ -28,3 +28,8 @@ end
 function s_nvim --description "Opens the Neovim plugin configuration file in Neovim"
     nvim ~/.config/nvim/lua/core/plugins.lua
 end
+
+function hosts --description 'Edit hosts file'
+    cd ~/../../etc && sudo nvim hosts
+end
+

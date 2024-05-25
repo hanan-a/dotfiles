@@ -13,10 +13,6 @@ function la --description 'List all files'
     eza $argv -al --icons
 end
 
-function hosts --description 'Edit hosts file'
-    cd ~/../../etc && sudo nvim hosts
-end
-
 function compgen --description 'List all commands'
     complete -C
 end
