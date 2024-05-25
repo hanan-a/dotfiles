@@ -10,7 +10,7 @@ function xx --description 'Exit the terminal'
 end
 
 function la --description 'List all files'
-    eza -al --icons
+    eza $argv -al --icons
 end
 
 function hosts --description 'Edit hosts file'
