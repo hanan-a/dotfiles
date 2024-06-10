@@ -37,3 +37,20 @@ end
 function lg --description 'lazygit'
     lazygit
 end
+
+function prv --description 'View PR - "gh pr view"'
+    gh pr view
+end
+
+function prs --description 'List PRs - "gh pr list"'
+    gh pr list
+end
+
+function openpr --description 'Open PR - "gh pr view --web"'
+    gh pr view --web
+end
+
+function ghd --description 'GH Dash - "gh dash"'
+    gh dash
+end
+
