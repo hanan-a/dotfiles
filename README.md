@@ -33,6 +33,10 @@ Then symnlink the files to the home dir `~`
 stow -vt ~ .
 ```
 
+You can use the `--simulate`/`-n` option to simulate operations to view the results.
+
+You might need to ignore the `.DS_Store` file by adding `--ignore=DS_Store`.
+
 # Fish Shell
 ---
 
