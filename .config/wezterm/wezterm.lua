@@ -4,7 +4,13 @@ return {
 	-- color_scheme = 'termnial.sexy',
 	color_scheme = 'Catppuccin Mocha',
 	enable_tab_bar = false,
-	font_size = 16.0,
+  -- font = wezterm.font("FiraCode Nerd Font"),
+  font = wezterm.font_with_fallback({
+    -- { family = "JetBrainsMono Nerd Font", scale = 0.75 },
+    { family = "JetBrainsMono Nerd Font", scale = 0.75 },
+    { family = "FiraCode Nerd Font", scale = 0.75 },
+  }),
+  font_size = 16.0,
 	-- macos_window_background_blur = 40,
 	macos_window_background_blur = 30,
 	
