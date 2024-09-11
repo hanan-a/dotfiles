@@ -15,6 +15,7 @@ import = [
 
 decorations = "NONE" # "Full"
 decorations_theme_variant = "Dark" # "Light"
+option_as_alt = "Both"
 
 [font]
 
