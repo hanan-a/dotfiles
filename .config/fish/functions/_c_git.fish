@@ -2,7 +2,7 @@ function _c_git
 end
 
 function g --description "Alias for git"
-    git
+    git $argv
 end
 
 function gf --description "Alias for git fetch"
