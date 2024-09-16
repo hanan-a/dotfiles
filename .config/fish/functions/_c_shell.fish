@@ -5,6 +5,10 @@ function cls --description 'Clear the terminal'
     clear
 end
 
+function cl --description 'Clear the terminal'
+    clear
+end
+
 function xx --description 'Exit the terminal'
     exit
 end
