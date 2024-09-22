@@ -1,4 +1,5 @@
 bat
+docker-compose
 entr
 eza
 fd
@@ -8,7 +9,9 @@ fzf
 gh
 glow
 gnu-sed
+go
 jq
+lazydocker
 lazygit
 lf
 neovim
