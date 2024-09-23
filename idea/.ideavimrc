@@ -15,6 +15,9 @@ set incsearch
 set relativenumber
 set number
 
+" set <leader> to <space>
+let mapleader = " "
+
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 
@@ -34,4 +37,4 @@ Plug 'tpope/vim-commentary'
 "map <leader>d <Action>(Debug)
 
 "" Map \b to toggle the breakpoint on the current line
-"map \b <Action>(ToggleLineBreakpoint)
+map <leader>b <Action>(ToggleLineBreakpoint)
