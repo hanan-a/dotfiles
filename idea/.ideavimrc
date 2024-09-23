@@ -38,3 +38,7 @@ Plug 'tpope/vim-commentary'
 
 "" Map \b to toggle the breakpoint on the current line
 map <leader>b <Action>(ToggleLineBreakpoint)
+
+" Map Go to next/prev error
+map ]d :action GotoNextError<CR>
+map [d :action GotoPreviousError<CR>
