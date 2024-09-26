@@ -45,6 +45,10 @@ map [d :action GotoPreviousError<CR>
 
 " Git actions
 
+" Git change navigation
+map [c :action VcsShowPrevChangeMarker<CR>
+map ]c :action VcsShowNextChangeMarker<CR>
+
 " Refactoring actions
 map <leader>ca :action ShowIntentionActions<CR>
 map <leader>r :action ReformatCode<CR>
@@ -62,3 +66,5 @@ map <A-h> :action StretchSplitToLeft<CR>
 map <A-l> :action StretchSplitToRight<CR>
 map <A-k> :action StretchSplitToTop<CR>
 
+" Open Problems tool window
+map <leader>d :action ActivateProblemsViewToolWindow<CR>
