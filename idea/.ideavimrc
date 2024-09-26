@@ -37,8 +37,28 @@ Plug 'tpope/vim-commentary'
 "map <leader>d <Action>(Debug)
 
 "" Map \b to toggle the breakpoint on the current line
-map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>b :action ToggleLineBreakpoint<CR>
 
 " Map Go to next/prev error
 map ]d :action GotoNextError<CR>
 map [d :action GotoPreviousError<CR>
+
+" Git actions
+
+" Refactoring actions
+map <leader>ca :action ShowIntentionActions<CR>
+map <leader>r :action ReformatCode<CR>
+map <leader>cr :action RenameElement<CR>
+
+" Split navigation
+map <C-l> <C-w>l
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+
+" Split resizing
+map <A-j> :action StretchSplitToBottom<CR>
+map <A-h> :action StretchSplitToLeft<CR>
+map <A-l> :action StretchSplitToRight<CR>
+map <A-k> :action StretchSplitToTop<CR>
+
