@@ -79,6 +79,9 @@ map <M-k> :action StretchSplitToTop<CR>
 map <M-.> :action NextTab<CR>
 map <M-,> :action PreviousTab<CR>
 
+" Hide open window
+map <leader>q :action HideActiveWindow<CR>
+
 " Open Problems tool window
 map <leader>d :action ActivateProblemsViewToolWindow<CR>
 map <C-p> :action SearchEverywhere<CR>
