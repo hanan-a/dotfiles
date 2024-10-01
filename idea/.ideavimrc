@@ -36,14 +36,23 @@ Plug 'tpope/vim-commentary'
 "" Map <leader>d to start debug
 "map <leader>d <Action>(Debug)
 
+" Source the ideavimrc
+map <leader>sr :action IdeaVim.ReloadVimRc.reload<CR>
+
 "" Map \b to toggle the breakpoint on the current line
 map <leader>b :action ToggleLineBreakpoint<CR>
+
+" Map find in path
+map <leader>fg :action FindInPath<CR>
 
 " Map Go to next/prev error
 map ]d :action GotoNextError<CR>
 map [d :action GotoPreviousError<CR>
 
 " Git actions
+map + :action CheckinProject<CR>
+map <leader>hr :action Vcs.RollbackChangedLines<CR>
+map <leader>hR :action ChangesView.Revert<CR>
 
 " Git change navigation
 map [c :action VcsShowPrevChangeMarker<CR>
@@ -52,7 +61,7 @@ map ]c :action VcsShowNextChangeMarker<CR>
 " Refactoring actions
 map <leader>ca :action ShowIntentionActions<CR>
 map <leader>r :action ReformatCode<CR>
-map <leader>cr :action RenameElement<CR>
+map <leader>rn :action RenameElement<CR>
 
 " Split navigation
 map <C-l> <C-w>l
@@ -61,10 +70,15 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 
 " Split resizing
-map <A-j> :action StretchSplitToBottom<CR>
-map <A-h> :action StretchSplitToLeft<CR>
-map <A-l> :action StretchSplitToRight<CR>
-map <A-k> :action StretchSplitToTop<CR>
+map <M-j> :action StretchSplitToBottom<CR>
+map <M-h> :action StretchSplitToLeft<CR>
+map <M-l> :action StretchSplitToRight<CR>
+map <M-k> :action StretchSplitToTop<CR>
+
+" Tab navigation
+map <M-.> :action NextTab<CR>
+map <M-,> :action PreviousTab<CR>
 
 " Open Problems tool window
 map <leader>d :action ActivateProblemsViewToolWindow<CR>
+map <C-p> :action SearchEverywhere<CR>
