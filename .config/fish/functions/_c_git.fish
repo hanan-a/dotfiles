@@ -58,7 +58,7 @@ function wtclone --description "Clone for worktree"
     git fetch origin
 end
 
-function __workspace_root --description "Move to the Git workspace root directory"
+function __go_to_workspace_root --description "Move to the Git workspace root directory"
   cd (git rev-parse --show-toplevel)
 end
 
