@@ -63,32 +63,36 @@ function __go_to_workspace_root --description "Move to the Git workspace root di
 end
 
 function wtadd --description "Add a worktree"
-    # Examples of call:
-    # wtadd feat/branch 
-    # => Adds a worktree to the repo/feat/branch  directory
-    # If the branch is not found, it will be created
-    set branch $argv[1]
-    set path $argv[2]
-    if test -z $branch
-        echo "Branch name is required"
-        return
-    end
+  # Examples of call:
+  # wtadd feat/branch 
+  # => Adds a worktree to the repo/feat/branch  directory
+  # If the branch is not found, it will be created
+  set branch $argv[1]
+  set path $argv[2]
+  if test -z $branch
+    echo "Branch name is required"
+    return
+  end
 
-    if test -z $path
-        set path ./$branch
-    else
-        set path ../$branch
-    end
+  __go_to_workspace_root
 
+  if test -z $path
+    echo "Path is set as branch name"
+    set path ./$branch
+  end
 
-    # Check if branch exists
-    if test -z (git branch --list $branch)
-        echo "Creating worktree for new branch $branch at $path..."
-        git worktree add -b $branch $path
-    else
-        echo "Creating worktree for existing branch $branch at $path..."
-        git worktree add $path $branch
-    end
+  echo "Adding worktree at $path..."
+
+  # Check if branch exists
+  if test -z (git branch --list $branch)
+    echo "Creating worktree for new branch $branch at $path..."
+    git worktree add -b $branch $path
+  else
+    echo "Creating worktree for existing branch $branch at $path..."
+    git worktree add $path $branch
+  end
+
+  cd $path
 end
 
 function wtremove --description "Remove a worktree"
