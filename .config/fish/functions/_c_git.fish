@@ -168,22 +168,24 @@ function wtadd --description "Add a worktree" --wraps "git worktree add"
 end
 
 function wtremove --description "Remove a worktree" --wraps "git worktree remove"
-    # Examples of call:
-    # wtremove feat/branch 
-    # => Removes the worktree at repo/feat/branch
-    set branch $argv[1]
-    set path $argv[2]
-    if test -z $branch
-        echo "Branch name is required"
-        return
-    end
+  # Examples of call:
+  # wtremove feat/branch 
+  # => Removes the worktree at repo/feat/branch
+  set branch $argv[1]
+  set path $argv[2]
+  if test -z $branch
+    echo "Branch name is required"
+    return
+  end
 
-    # Find the path for the existing worktree based on the branch name
-    if test -z $path
-        set path (git worktree list | grep $branch | awk '{print $1}')
-    end
+  groot
 
-    echo "Removing worktree for branch $branch at $path..."
-    git worktree remove $path
+  # Find the path for the existing worktree based on the branch name
+  if test -z $path
+    set path (git worktree list | grep $branch | awk '{print $1}')
+  end
+
+  echo "Removing worktree for branch $branch at $path..."
+  git worktree remove $path
 end
 
