@@ -5,22 +5,30 @@ function g --description "Alias for git"
     git $argv
 end
 
-function gf --description "Alias for git fetch"
+function gf --description "Alias for git fetch" --wraps "git fetch"
     echo "Fetching..."
     git fetch
 end
 
-function gs --description "Alias for git status"
+function gs --description "Alias for git status" --wraps "git status"
     echo "Git Status: "
     git status
 end
 
-function gp --description "Alias for git pull"
+function gp --description "Alias for git pull" --wraps "git pull"
     echo "Pulling..."
     git pull
 end
 
-function gP --description "Alias for git push"
+function gdb --description "Delete the provided branch" --wraps "git branch -D"
+  git branch -D $argv
+end
+
+function gblist --description "FZF List all branches"
+    git branch -a | fzf --reverse
+end
+
+function gP --description "Alias for git push" --wraps "git push"
     echo "Pushing..."
     # If the current branch is main or master, abort the push with a message
     if test (git branch --show-current) = "main" -o (git branch --show-current) = "master"
@@ -42,9 +50,9 @@ function wtclone --description "Clone for worktree"
     #
     # wfclone git@github.com:name/repo.git my-repo
     # => Clones to a /my-repo directory
-    set url $argv[1]
+    set -l url $argv[1]
     # set the base parameter as the basepath of the url
-    set name (echo $url | sed -e 's/.*\/\([^\/]*\)\.git/\1/')
+    set -l name (echo $url | sed -e 's/.*\/\([^\/]*\)\.git/\1/')
     echo "Cloning $url into $name"
     mkdir $name
     cd $name
@@ -58,27 +66,91 @@ function wtclone --description "Clone for worktree"
     git fetch origin
 end
 
-function __go_to_workspace_root --description "Move to the Git workspace root directory"
-  cd (git rev-parse --show-toplevel)
+
+function goto_bare_root --description "Go to the bare repo root (where the .bare dir is)"
+  # Go up the file tree until there is a .bare directory
+  if is_bare_repo
+    set current_dir (pwd)
+    while [ "$current_dir" != "/" ]
+      if [ -d "$current_dir/.bare" ]
+        cd $current_dir
+        # Clean up the variable
+        set -e current_dir
+        #echo "In bare repo root"
+        return 0
+      end
+      set current_dir (dirname "$current_dir")
+    end
+
+    echo "Not a valid bare repo..."
+    # Clean up the variable
+    set -e current_dir
+  return 1
+  end
 end
 
-function wtadd --description "Add a worktree"
+function is_bare_repo --description "Returns true if the Git repository is a bare repository"
+  set -l output (eval git config --get core.bare)
+
+  if test "$output" = "true"
+    #echo "This is a bare repo."
+    return 0
+  else
+    #echo "This is not a bare repo."
+    return 1
+  end
+end
+
+function is_git_repo
+  # Go up the file tree until there is a .git directory
+  set current_dir (pwd)
+  while [ "$current_dir" != "/" ]
+    if [ -d "$current_dir/.git" ]
+      set -e current_dir
+      return 0
+    end
+    set current_dir (dirname "$current_dir")
+  end
+
+  set -e current_dir
+  return 1
+end
+
+function groot --description "Move to the Git workspace root directory"
+  if test is_git_repo
+    #echo "Inside a git repo"
+    if test is_bare_repo
+     #echo "Git bare repo - going to root"
+      goto_bare_root
+      return $status
+    else 
+      #echo "Git repo - going to root"
+      cd (git rev-parse --show-toplevel)
+      return $status
+    end
+  end
+
+  echo "Cannot go to Git root since this isn't a Git repo"
+  return 1
+end
+
+function wtadd --description "Add a worktree" --wraps "git worktree add"
   # Examples of call:
   # wtadd feat/branch 
   # => Adds a worktree to the repo/feat/branch  directory
   # If the branch is not found, it will be created
-  set branch $argv[1]
-  set path $argv[2]
+  set -l branch $argv[1]
+  set -l path $argv[2]
   if test -z $branch
     echo "Branch name is required"
     return
   end
 
-  __go_to_workspace_root
+  groot
 
   if test -z $path
     echo "Path is set as branch name"
-    set path ./$branch
+    set -l path ./$branch
   end
 
   echo "Adding worktree at $path..."
@@ -95,12 +167,12 @@ function wtadd --description "Add a worktree"
   cd $path
 end
 
-function wtremove --description "Remove a worktree"
+function wtremove --description "Remove a worktree" --wraps "git worktree remove"
     # Examples of call:
     # wtremove feat/branch 
     # => Removes the worktree at repo/feat/branch
-    set branch $argv[1]
-    set path $argv[2]
+    set -l branch $argv[1]
+    set -l path $argv[2]
     if test -z $branch
         echo "Branch name is required"
         return
@@ -108,13 +180,10 @@ function wtremove --description "Remove a worktree"
 
     # Find the path for the existing worktree based on the branch name
     if test -z $path
-        set path (git worktree list | grep $branch | awk '{print $1}')
+        set -l path (git worktree list | grep $branch | awk '{print $1}')
     end
 
     echo "Removing worktree for branch $branch at $path..."
     git worktree remove $path
 end
 
-function gblist --description "FZF List all branches"
-    git branch -a | fzf --reverse
-end
