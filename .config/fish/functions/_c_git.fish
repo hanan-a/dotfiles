@@ -39,7 +39,7 @@ function gP --description "Alias for git push" --wraps "git push"
     git push
 end
 
-function wlist --description "List all worktrees"
+function wtlist --description "List all worktrees"
     git worktree list | fzf --reverse
 end
 
