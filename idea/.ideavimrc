@@ -84,4 +84,11 @@ map <leader>q :action HideActiveWindow<CR>
 
 " Open Problems tool window
 map <leader>d :action ActivateProblemsViewToolWindow<CR>
+
+" Search Actions
 map <C-p> :action SearchEverywhere<CR>
+map <leader>O :action SelectInProjectView<CR>
+
+" Outline
+map <leader>o :action FileStructurePopup<CR>
+
