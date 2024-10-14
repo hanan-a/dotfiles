@@ -116,6 +116,10 @@ function is_git_repo
   return 1
 end
 
+function goto_git_root --description "Move to the Git workspace root directory"
+  cd (git rev-parse --show-toplevel)
+end
+
 function groot --description "Move to the Git workspace root directory"
   if test is_git_repo
     #echo "Inside a git repo"
@@ -125,7 +129,7 @@ function groot --description "Move to the Git workspace root directory"
       return $status
     else 
       #echo "Git repo - going to root"
-      cd (git rev-parse --show-toplevel)
+      goto_git_root
       return $status
     end
   end
