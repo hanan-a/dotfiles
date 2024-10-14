@@ -25,11 +25,25 @@ function ns --description "npm start"
     npm start
 end
 
-function fscripts --description "FZF npm scripts"
+function scripts --description "List npm scripts - searches package.json in git root"
+  # Check if in npm project
+  goto_git_root
+  if not test -f package.json
+    echo "Not in an npm project"
+    return 1
+  end
+
+  if type fx > /dev/null
+    fx '.scripts' package.json
+  else if type jq > /dev/null
+    jq '.scripts' package.json
+  else if type fzf > /dev/null
     npm run | fzf
+  else if type bat > /dev/null
+    bat package.json
+  else
+    cat package.json
+  end
+  prevd
+  return 0
 end
-
-function nscripts --description "List npm scripts"
-    jq '.scripts' package.json | jq -r 'keys[]'
-end
-
