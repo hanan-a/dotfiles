@@ -197,3 +197,17 @@ function wtremove --description "Remove a worktree" --wraps "git worktree remove
   git worktree remove $path
 end
 
+function goto_worktree --description "Moves to the chosen workspace"
+  # List worktrees using fzf and move to the selected worktree
+  set -l worktree (git worktree list | fzf --reverse | awk '{print $1}')
+  if test -z $worktree
+    echo "No worktree selected"
+    return
+  end
+
+  cd $worktree
+end
+
+function gtw --description "Go to worktree"
+  goto_worktree
+end
