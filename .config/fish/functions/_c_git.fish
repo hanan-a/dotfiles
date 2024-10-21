@@ -33,14 +33,17 @@ function gbl --description "List all branches"
 end
 
 function gP --description "Alias for git push" --wraps "git push"
-    echo "Pushing..."
-    # If the current branch is main or master, abort the push with a message
-    if test (git branch --show-current) = "main" -o (git branch --show-current) = "master"
-        echo "You are trying to push to the main or master branch. Aborting... Please use a feature branch."
-        return
-    end
+  echo "Pushing..."
+  argparse f/force -- $argv
+  set -q _flag_force
+  set -l curr_branch (git branch --show-current)
+  # If the current branch is main or master, abort the push with a message
+  if test curr_branch = "main" -o curr_branch = "master" -a -z $_flag_force
+    echo "You are trying to push to the main or master branch. Aborting... Please use a feature branch."
+    return 1
+  end
 
-    git push
+  git push
 end
 
 function wtlist --description "List all worktrees"
