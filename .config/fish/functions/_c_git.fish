@@ -28,6 +28,10 @@ function gblist --description "FZF List all branches"
     git branch -a | fzf --reverse
 end
 
+function gbl --description "List all branches"
+    gblist
+end
+
 function gP --description "Alias for git push" --wraps "git push"
     echo "Pushing..."
     # If the current branch is main or master, abort the push with a message
