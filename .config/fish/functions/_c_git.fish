@@ -34,14 +34,6 @@ end
 
 function gP --description "Alias for git push" --wraps "git push"
   echo "Pushing..."
-  argparse f/force -- $argv
-  set -q _flag_force
-  # If the current branch is main or master, abort the push with a message
-  if test -z $_flag_force
-    echo "Force Pushing..."
-    git push
-  end
-
   set -l curr_branch (git branch --show-current)
   if test curr_branch = "main" -o curr_branch = "master"
     echo "You are trying to push to the main or master branch. Aborting... Please use a feature branch."
