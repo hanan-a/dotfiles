@@ -211,3 +211,10 @@ end
 function gtw --description "Go to worktree"
   goto_worktree
 end
+
+function gb --description "Print the current branch" --wraps "git branch --show-current"
+  set -l current_branch (git branch --show-current)
+  echo $current_branch | pbcopy
+  echo $current_branch
+end
+
