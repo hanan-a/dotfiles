@@ -3,7 +3,8 @@ import = [
   # "~/.config/alacritty/catppuccin-latte.toml"
   # "~/.config/alacritty/catppuccin-frappe.toml"
   # "~/.config/alacritty/catppuccin-macchiato.toml"
-  "~/.config/alacritty/catppuccin-mocha.toml"
+  # "~/.config/alacritty/catppuccin-mocha.toml"
+  "~/.config/alacritty/tokyonight-night.toml"
 ]
 
 [window]
@@ -14,7 +15,7 @@ import = [
 # padding.y = 10
 
 decorations = "NONE" # "Full"
-decorations_theme_variant = "Dark" # "Light"
+# decorations_theme_variant = "Dark" # "Light"
 option_as_alt = "Both"
 
 [font]
