@@ -92,3 +92,6 @@ map <leader>O :action SelectInProjectView<CR>
 " Outline
 map <leader>o :action FileStructurePopup<CR>
 
+" In file navigation
+map - :action ShowNavBar<CR>
+
