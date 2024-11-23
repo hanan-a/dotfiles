@@ -1,8 +1,4 @@
 import = [
-  # uncomment the flavour you want below:
-  # "~/.config/alacritty/catppuccin-latte.toml"
-  # "~/.config/alacritty/catppuccin-frappe.toml"
-  # "~/.config/alacritty/catppuccin-macchiato.toml"
   # "~/.config/alacritty/catppuccin-mocha.toml"
   "~/.config/alacritty/tokyonight-night.toml"
 ]
@@ -12,9 +8,9 @@ import = [
 # opacity = 0.8
 
 # padding.x = 10
-# padding.y = 10
+# padding.y = 1
 
-decorations = "NONE" # "Full"
+decorations = "buttonless" # "NONE" # "Full"
 # decorations_theme_variant = "Dark" # "Light"
 option_as_alt = "Both"
 
