@@ -20,6 +20,11 @@ function gp --description "Alias for git pull" --wraps "git pull"
     git pull
 end
 
+function gfp --description "Alias for git fetch and pull" --wraps "git fetch && git pull"
+    echo "Fetching and Pulling..."
+    git fetch && git pull
+end
+
 function gdb --description "Delete the provided branch" --wraps "git branch -D"
   git branch -D $argv
 end
