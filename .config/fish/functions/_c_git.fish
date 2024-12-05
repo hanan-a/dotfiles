@@ -168,19 +168,22 @@ function wtadd --description "Add a worktree" --wraps "git worktree add"
 
   echo "Adding worktree at $path..."
 
-  set branch_exists_locally (git show-ref --verify --quiet refs/heads/$branch)
-  set branch_exists_remotely (git ls-remote --heads origin $branch)
-
-  if test -z "$branch_exists_locally"
-    echo "Creating worktree for new branch $branch at $path..."
-    git worktree add -b $branch $path
-  else if test -n "$branch_exists_remotely"
-    echo "Creating worktree for existing remote branch $branch at $path..."
-    git checkout $branch origin/$branch
-    git worktree add $path $branch
-  else
+  # Check if the branch exists locally
+  set -l branch_exists_locally (git branch --list "$branch" 2> /dev/null)
+  if test -n "$branch_exists_locally"; then
     echo "Creating worktree for existing local branch $branch at $path..."
     git worktree add $path $branch
+  else
+    # Check if the branch exists remotely
+    set -l branch_exists_remotely (git ls-remote --heads origin "$branch" 2> /dev/null)
+    if test -n "$branch_exists_remotely";
+      echo "Creating worktree for existing remote branch $branch at $path..."
+      git worktree add --track -b $branch $path origin/$branch
+    else
+      echo "Creating worktree for new branch $branch at $path..."
+      git worktree add -b $branch $path
+      fi
+    end
   end
 
   if test $status -ne 0
