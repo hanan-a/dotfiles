@@ -182,7 +182,6 @@ function wtadd --description "Add a worktree" --wraps "git worktree add"
     else
       echo "Creating worktree for new branch $branch at $path..."
       git worktree add -b $branch $path
-      fi
     end
   end
 
