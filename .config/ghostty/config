@@ -1,0 +1,12 @@
+theme = tokyonight
+
+font-family = JetBrains Mono
+font-size = 16
+
+macos-option-as-alt = true
+
+# macos-titlebar-style options: native, transparent, tabs, hidden, 
+# macos-titlebar-style = native 
+
+# MacOs window decorations removes the titlebar and the window controls
+window-decoration = false
