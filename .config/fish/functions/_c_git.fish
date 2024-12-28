@@ -170,7 +170,7 @@ function wtadd --description "Add a worktree" --wraps "git worktree add"
 
   # Check if the branch exists locally
   set -l branch_exists_locally (git branch --list "$branch" 2> /dev/null)
-  if test -n "$branch_exists_locally"; then
+  if test -n "$branch_exists_locally";
     echo "Creating worktree for existing local branch $branch at $path..."
     git worktree add $path $branch
   else
