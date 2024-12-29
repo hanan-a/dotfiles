@@ -3,7 +3,7 @@ theme = tokyonight
 # Font
 font-family = JetBrains Mono
 font-size = 12
-adjust-cell-width = -15%
+adjust-cell-width = -10%
 
 macos-option-as-alt = true
 
