@@ -25,6 +25,11 @@ function ns --description "npm start"
     npm start
 end
 
+function nd --description "npm run dev"
+  echo "npm run dev..."
+  npm run dev
+end
+
 function scripts --description "List npm scripts - searches package.json in git root"
   # Check if in npm project
   goto_git_root
