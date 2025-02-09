@@ -16,6 +16,11 @@ function ncheck --description "npm lint & test"
     npm run lint && npm run test
 end
 
+function nformat --description "npm run format"
+    echo "npm run format..."
+    npm run format
+end
+
 function nC --description "npm run lint & test"
     ncheck
 end
