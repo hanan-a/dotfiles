@@ -9,3 +9,6 @@ alias la='eza -a -l --icons'
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
