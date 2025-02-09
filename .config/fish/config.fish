@@ -10,6 +10,9 @@ end
 
 set -g fish_greeting
 
+# Set up fzf key bindings
+fzf --fish | source
+
 fish_vi_key_bindings
 custom_functions
 starship init fish | source
