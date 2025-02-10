@@ -1,4 +1,8 @@
+awscli
+bash
 bat
+bc
+coreutils
 docker-compose
 entr
 eza
@@ -6,7 +10,9 @@ fd
 fish
 fx
 fzf
+gawk
 gh
+glab
 glow
 gnu-sed
 go
@@ -15,6 +21,8 @@ lazydocker
 lazygit
 lf
 neovim
+nowplaying-cli
+okta-aws-cli
 pipx
 pyenv
 ripgrep
@@ -25,4 +33,6 @@ tig
 tldr
 tmux
 tree
+yazi
+zellij
 zoxide
