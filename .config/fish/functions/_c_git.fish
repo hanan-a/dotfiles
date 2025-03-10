@@ -236,3 +236,7 @@ function gb --description "Print the current branch" --wraps "git branch --show-
   echo $current_branch
 end
 
+
+function ppr --description "Preview the pull request on GitHub" --wraps "gh pr view --web"
+  gh pr view --web
+end
