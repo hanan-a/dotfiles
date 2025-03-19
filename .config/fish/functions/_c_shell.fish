@@ -17,6 +17,10 @@ function la --description 'List all files' --wraps "eza -al --icons"
     eza $argv -al --icons
 end
 
+function pd --description 'Go to previous directory'
+    prevd
+end
+
 function compgen --description 'List all commands'
     complete -C
 end
