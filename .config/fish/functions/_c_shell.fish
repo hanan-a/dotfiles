@@ -62,6 +62,15 @@ function ghd --description 'GH Dash - "gh dash"' --wraps "gh dash"
     gh dash
 end
 
+function pversion --description 'Print the package.json version' --wraps "jq"
+  if not test -f package.json
+    echo "Not in an npm project"
+    return 1
+  end
+
+  fx '.version' package.json
+end
+
 function y --description 'Yazi' --wraps "yazi"
   set tmp (mktemp -t "yazi-cwd.XXXXXX")
   yazi $argv --cwd-file="$tmp"
