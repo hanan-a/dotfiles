@@ -4,6 +4,12 @@ export NVM_DIR="$HOME/.nvm"
 
 export EDITOR="nvim"
 
+# Source private configurations if the file exists
+set private_config_file ~/.local/share/fish/private_config.fish
+if test -f $private_config_file
+    source $private_config_file
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -19,3 +25,5 @@ starship init fish | source
 zoxide init fish | source
 
 thefuck --alias | source
+
+nvm use 20
