@@ -75,7 +75,8 @@ function wtclone --description "Clone for worktree"
     git fetch origin
 end
 
-
+# Function to go to the main or master workspace directory. It is located under the .bare directory and the name of the directory is the name of the branch - "main" or "master". The current branch is most likely not the main or master branch.
+# The operation should only be a cd operation and not a git checkout operation. There should be validation to ensure that the current branch is not the main or master branch.
 function goto_bare_root --description "Go to the bare repo root (where the .bare dir is)"
   # Go up the file tree until there is a .bare directory
   if is_bare_repo
