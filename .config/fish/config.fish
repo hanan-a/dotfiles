@@ -26,4 +26,4 @@ zoxide init fish | source
 
 thefuck --alias | source
 
-nvm use 20
+
