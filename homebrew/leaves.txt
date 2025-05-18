@@ -8,7 +8,6 @@ entr
 eza
 fd
 fish
-fx
 fzf
 gawk
 gh
