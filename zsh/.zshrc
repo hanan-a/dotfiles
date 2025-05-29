@@ -12,3 +12,8 @@ eval "$(starship init zsh)"
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/hananavramovich/.lmstudio/bin"
+# End of LM Studio CLI section
+
