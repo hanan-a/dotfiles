@@ -1,0 +1,22 @@
+{
+    "editor.vim.enabled": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.ignorecase": true,
+    "vim.smartcase": true,
+    "vim.showcmd": true,
+    "vim.easymotion": true,
+    "vim.surround": true,
+    "vim.commentary": true,
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-c>": false,
+        "<C-v>": false,
+        "<C-x>": false,
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-z>": false,
+        "<C-y>": false
+    }
+} 

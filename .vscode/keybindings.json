@@ -1,0 +1,79 @@
+[
+    // Normal mode mappings
+    {
+        "key": "j",
+        "command": "cursorDown",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "k",
+        "command": "cursorUp",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "h",
+        "command": "cursorLeft",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "l",
+        "command": "cursorRight",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "w",
+        "command": "cursorWordStartRight",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "b",
+        "command": "cursorWordStartLeft",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "0",
+        "command": "cursorHome",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "$",
+        "command": "cursorEnd",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "gg",
+        "command": "cursorTop",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "G",
+        "command": "cursorBottom",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    // Visual mode mappings
+    {
+        "key": "v",
+        "command": "vim.remap",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+        "args": {
+            "after": ["<C-v>"]
+        }
+    },
+    // Insert mode mappings
+    {
+        "key": "i",
+        "command": "vim.remap",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+        "args": {
+            "after": ["<C-v>"]
+        }
+    },
+    {
+        "key": "a",
+        "command": "vim.remap",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+        "args": {
+            "after": ["<C-v>"]
+        }
+    }
+] 
