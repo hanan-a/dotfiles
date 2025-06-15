@@ -32,3 +32,9 @@ thefuck --alias | source
 set -gx PATH $PATH /Users/hananavramovich/.lmstudio/bin
 # End of LM Studio CLI section
 
+
+# Created by `pipx` on 2025-06-12 12:03:27
+set PATH $PATH /Users/hananavramovich/.local/bin
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/hananavramovich/google-cloud-sdk/path.fish.inc' ]; . '/Users/hananavramovich/google-cloud-sdk/path.fish.inc'; end
