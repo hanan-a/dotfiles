@@ -22,6 +22,9 @@ _darcs
 ^/LICENSE.*
 ^/COPYING
 
+## Jujutsu
+\.jj
+
 ## Custom
 raycast
 \.idea
