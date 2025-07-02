@@ -26,7 +26,9 @@ zoxide init fish | source
 
 thefuck --alias | source
 
-
+# Set up carapace for autocompletion
+set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+carapace _carapace | source
 
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /Users/hananavramovich/.lmstudio/bin
