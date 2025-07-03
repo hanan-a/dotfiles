@@ -30,6 +30,9 @@ time_format = '%T'
 # [directory.substitutions]
 # '~/wrk/ad-player' = '>>>'
 
+[package]
+display_private = true
+
 [sudo]
 disabled = false
 
