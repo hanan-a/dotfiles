@@ -1,6 +1,14 @@
 function _c_shell
 end
 
+function dotfiles --description 'Open dotfiles directory in nvim' --wraps "nvim"
+    cd ~/own/dotfiles && nvim .
+end
+
+function nvc --description 'Open nvim config directory' --wraps "nvim"
+    cd ~/.config/nvim && nvim .
+end
+
 function cls --description 'Clear the terminal'
     clear
 end
@@ -79,6 +87,7 @@ function y --description 'Yazi' --wraps "yazi"
   end
   rm -f -- "$tmp"
 end
+
 
 alias sd "cd (fzf --walker dir)"
 alias sf "nvim (fzf --preview 'bat -n --color=always {}')"
