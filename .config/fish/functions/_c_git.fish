@@ -241,3 +241,65 @@ end
 function ppr --description "Preview the pull request on GitHub" --wraps "gh pr view --web"
   gh pr view --web
 end
+
+function wtrb --description "Select a worktree via fzf to remove and delete its branch"
+  groot
+  if test $status -ne 0
+    return
+  end
+
+  set -l selection (git worktree list | fzf --prompt="Select a worktree to remove and delete branch> " --reverse)
+  if test -z "$selection"
+    echo "No worktree selected."
+    return
+  end
+
+  set -l worktree_path (echo "$selection" | awk '{print $1}')
+  set -l branch_name (echo "$selection" | awk '{print $3}' | sed 's/\[//g;s/\]//g')
+
+  if test -z "$branch_name"
+      echo "This appears to be the main worktree, which cannot be removed this way."
+      return
+  end
+
+  if test -z "$worktree_path"
+      echo "Could not parse worktree path from selection."
+      echo "Selection: $selection"
+      return
+  end
+
+  # Confirmation
+  read -P "Remove worktree '$worktree_path' and delete branch '$branch_name'? [y/N] " -l confirm
+  if test "$confirm" != "y"
+    echo "Aborted."
+    return
+  end
+
+  echo "Removing worktree at $worktree_path..."
+  git worktree remove "$worktree_path"
+  set -l remove_status $status
+
+  if test $remove_status -ne 0
+    read -P "Failed to remove worktree. It may have uncommitted changes. Force remove? [y/N] " -l force_confirm
+    if test "$force_confirm" = "y"
+        echo "Forcing removal of worktree at $worktree_path..."
+        git worktree remove --force "$worktree_path"
+        set remove_status $status
+    else
+        echo "Worktree removal aborted."
+        return
+    end
+  end
+
+  if test $remove_status -eq 0
+      echo "Worktree removed. Deleting branch '$branch_name'..."
+      git branch -D "$branch_name"
+      if test $status -ne 0
+          echo "Failed to delete branch '$branch_name'."
+      else
+          echo "Branch '$branch_name' deleted successfully."
+      end
+  else
+      echo "Failed to remove worktree even with force. Aborting branch deletion."
+  end
+end
