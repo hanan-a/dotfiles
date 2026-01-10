@@ -25,6 +25,10 @@ function la --description 'List all files' --wraps "eza -al --icons"
     eza $argv -al --icons
 end
 
+function ca --description 'Open Cursor-Agent' --wraps "cursor-agent"
+    cursor-agent
+end
+
 function pd --description 'Go to previous directory'
     prevd
 end
