@@ -37,14 +37,15 @@ function _load_directory_specific
                     
                     # Source the file - it will define the matching function
                     # The file should wrap its functionality in a conditional check
-                    source "$config_file"
-                    
-                    # Check if the matching function exists and if it matches
-                    if functions -q "$match_func_name"
-                        if eval "$match_func_name" "$current_dir"
-                            # This config matches, mark it as loaded
-                            set -g __fish_loaded_directory_config "$config_file"
-                            break
+                    # Wrap in error handling to prevent one bad file from breaking everything
+                    if source "$config_file" 2>/dev/null
+                        # Check if the matching function exists and if it matches
+                        if functions -q "$match_func_name"
+                            if eval "$match_func_name" "$current_dir" 2>/dev/null
+                                # This config matches, mark it as loaded
+                                set -g __fish_loaded_directory_config "$config_file"
+                                break
+                            end
                         end
                     end
                 end

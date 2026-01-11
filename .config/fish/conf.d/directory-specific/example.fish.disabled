@@ -25,8 +25,8 @@ end
 
 # Check if this config should be loaded for the current directory
 # Only execute the functionality if we're in a matching directory
-set -l current_dir (pwd)
-if __fish_dir_match_example "$current_dir"
+# Use $PWD instead of (pwd) to avoid potential errors
+if test -n "$PWD"; and __fish_dir_match_example "$PWD"
     # ============================================
     # Add your directory-specific functionality below
     # ============================================
@@ -63,4 +63,4 @@ function __fish_dir_unload_example
     if functions -q my_example_function
         functions -e my_example_function
     end
-end-
+end
