@@ -24,6 +24,15 @@ custom_functions
 starship init fish | source
 zoxide init fish | source
 
+# Load directory-specific configurations
+# This hook triggers automatically when PWD changes
+function __fish_on_pwd_change --on-variable PWD
+    _load_directory_specific
+end
+
+# Load directory-specific configs on initial shell startup
+_load_directory_specific
+
 thefuck --alias | source
 
 # Set up carapace for autocompletion
