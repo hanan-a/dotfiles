@@ -11,3 +11,11 @@ macos-option-as-alt = true
 macos-titlebar-style = hidden
 
 window-decoration = true
+
+background-opacity = 1
+# background-opacity = 0.95
+
+# keybind = ctrl+l=goto_split:right
+# keybind = ctrl+h=goto_split:left
+# keybind = ctrl+j=goto_split:down
+# keybind = ctrl+k=goto_split:up
