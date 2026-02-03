@@ -83,18 +83,42 @@ set --universal nvm_default_version 18
 # Cursor MCP Configuration
 ---
 
-The `.cursor/mcp.json` file configures Model Context Protocol (MCP) servers for Cursor.
+The `.cursor/mcp.json` file configures Model Context Protocol (MCP) servers for Cursor. To keep sensitive tokens out of version control, we use a template-based approach.
 
-## GitHub MCP Server
+## Setup
 
-The GitHub MCP server uses Cursor's built-in GitHub Copilot authentication. **No token is required** - it automatically authenticates using your Cursor account's GitHub credentials.
+1. **Set the GitHub MCP token as an environment variable:**
 
-The configuration is simply:
-```json
-"github": {
-  "url": "https://api.githubcopilot.com/mcp/"
-}
-```
+   For Fish Shell (recommended for this setup):
+   ```fish
+   set -gx GITHUB_MCP_TOKEN "your_github_pat_token_here"
+   ```
+   
+   Or add to `~/.local/share/fish/private_config.fish` (create if it doesn't exist):
+   ```fish
+   set -gx GITHUB_MCP_TOKEN "your_github_pat_token_here"
+   ```
 
-No Authorization header or environment variables are needed.
+   For Bash/Zsh:
+   ```shell
+   export GITHUB_MCP_TOKEN="your_github_pat_token_here"
+   ```
+
+2. **Generate `mcp.json` from the template:**
+   ```shell
+   ~/.cursor/generate-mcp.sh
+   ```
+
+   Or if running from the dotfiles directory:
+   ```shell
+   .cursor/generate-mcp.sh
+   ```
+
+## Files
+
+- `mcp.json.template` - Template file (safe to commit, contains `{{GITHUB_MCP_TOKEN}}` placeholder)
+- `mcp.json` - Generated file (gitignored, contains actual token)
+- `generate-mcp.sh` - Script to generate `mcp.json` from template
+
+**Note:** The `mcp.json` file is gitignored to prevent committing sensitive tokens. Always generate it from the template using the script.
 
