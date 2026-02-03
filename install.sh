@@ -28,7 +28,8 @@ fi
 
 echo "Stowing dotfiles..."
 stow -vt ~ . zsh 
-stow -vt ~/.config .config  
+stow -vt ~/.config .config
+stow -vt ~ .cursor  
 
 # if fish is not the default shell, change it
 if [ "$SHELL" != "/opt/homebrew/bin/fish" ]; then

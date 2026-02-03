@@ -80,5 +80,21 @@ fisher install jorgebucaran/nvm.fish
 set --universal nvm_default_version 18
 ```
 
+# Cursor MCP Configuration
+---
 
+The `.cursor/mcp.json` file configures Model Context Protocol (MCP) servers for Cursor.
+
+## GitHub MCP Server
+
+The GitHub MCP server uses Cursor's built-in GitHub Copilot authentication. **No token is required** - it automatically authenticates using your Cursor account's GitHub credentials.
+
+The configuration is simply:
+```json
+"github": {
+  "url": "https://api.githubcopilot.com/mcp/"
+}
+```
+
+No Authorization header or environment variables are needed.
 
