@@ -49,3 +49,6 @@ set PATH $PATH /Users/hananavramovich/.local/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hananavramovich/google-cloud-sdk/path.fish.inc' ]; . '/Users/hananavramovich/google-cloud-sdk/path.fish.inc'; end
+
+# Added by Antigravity
+fish_add_path /Users/hananavramovich/.antigravity/antigravity/bin
