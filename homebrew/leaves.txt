@@ -2,6 +2,7 @@ awscli
 bash
 bat
 bc
+carapace
 coreutils
 docker-compose
 entr
