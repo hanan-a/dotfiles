@@ -1,6 +1,11 @@
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+if test -s "/opt/homebrew/opt/nvm/nvm.sh"
+    \. "/opt/homebrew/opt/nvm/nvm.sh"
+    test -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"; and \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+else if test -s "$HOME/.nvm/nvm.sh"
+    \. "$HOME/.nvm/nvm.sh"
+    test -s "$HOME/.nvm/bash_completion"; and \. "$HOME/.nvm/bash_completion"
+end
 
 export EDITOR="nvim"
 
@@ -39,16 +44,22 @@ thefuck --alias | source
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 carapace _carapace | source
 
-# Added by LM Studio CLI (lms)
-set -gx PATH $PATH /Users/hananavramovich/.lmstudio/bin
-# End of LM Studio CLI section
+# LM Studio CLI
+if test -d "$HOME/.lmstudio/bin"
+    set -gx PATH $PATH $HOME/.lmstudio/bin
+end
 
+# pipx
+if test -d "$HOME/.local/bin"
+    set PATH $PATH $HOME/.local/bin
+end
 
-# Created by `pipx` on 2025-06-12 12:03:27
-set PATH $PATH /Users/hananavramovich/.local/bin
+# Google Cloud SDK
+if test -f "$HOME/google-cloud-sdk/path.fish.inc"
+    source "$HOME/google-cloud-sdk/path.fish.inc"
+end
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/hananavramovich/google-cloud-sdk/path.fish.inc' ]; . '/Users/hananavramovich/google-cloud-sdk/path.fish.inc'; end
-
-# Added by Antigravity
-fish_add_path /Users/hananavramovich/.antigravity/antigravity/bin
+# Antigravity
+if test -d "$HOME/.antigravity/antigravity/bin"
+    fish_add_path $HOME/.antigravity/antigravity/bin
+end
