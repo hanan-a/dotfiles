@@ -20,14 +20,40 @@ This command uses the `homebrew/leaves.txt` file to list the needed packages.
 xargs brew install < ./homebrew/leaves.txt
 ```
 
+# Installation (Linux/Ubuntu)
+---
+
+Run the _install.sh_ file from within the _dotfiles_ directory.
+It detects the OS automatically and runs the appropriate installer.
+
+```shell
+bash install.sh
+```
+
+The Linux installer will:
+1. Add required PPAs (fish, neovim-unstable)
+2. Install packages from `apt/packages.txt`
+3. Install additional tools not available in default repos (starship, eza, lazygit, lazydocker, yazi, lf, glow, zoxide, carapace, pyenv, Go, ghostty, alacritty)
+4. Create compatibility symlinks for `bat` → `batcat` and `fd` → `fdfind`
+
+To run just the apt installer independently:
+
+```shell
+bash apt/install.sh
+```
+
 ## Symlink files into the `~` directory using stow:
 
 Make sure to install [GNU stow](https://www.gnu.org/software/stow/).
 
 ```shell
+# macOS
 brew install stow
+
+# Ubuntu/Debian
+sudo apt install stow
 ```
-Then symnlink the files to the home dir `~`
+Then symlink the files to the home dir `~`
 
 ```shell
 stow -vt ~ .
@@ -43,7 +69,12 @@ You might need to ignore the `.DS_Store` file by adding `--ignore=DS_Store`.
 Install fish using the main installation or run:
 
 ```shell
+# macOS
 brew install fish
+
+# Ubuntu
+sudo add-apt-repository ppa:fish-shell/release-4
+sudo apt update && sudo apt install fish
 ```
 
 Set fish as the default shell:
@@ -51,13 +82,21 @@ Set fish as the default shell:
 1. Add the shell to /etc/shells with:
 
 ```shell
-echo /usr/local/bin/fish | sudo tee -a /etc/shells
+# macOS
+echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+
+# Linux
+echo /usr/bin/fish | sudo tee -a /etc/shells
 ```
 
 2. Change your default shell with:
 
 ```shell
-chsh -s /usr/local/bin/fish
+# macOS
+chsh -s /opt/homebrew/bin/fish
+
+# Linux
+chsh -s /usr/bin/fish
 ```
 
 ## Installing NVM in Fish Shell
@@ -121,4 +160,3 @@ The `.cursor/mcp.json` file configures Model Context Protocol (MCP) servers for 
 - `generate-mcp.sh` - Script to generate `mcp.json` from template
 
 **Note:** The `mcp.json` file is gitignored to prevent committing sensitive tokens. Always generate it from the template using the script.
-
