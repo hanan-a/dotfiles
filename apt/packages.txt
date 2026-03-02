@@ -4,6 +4,7 @@ bc
 coreutils
 fd-find
 fish
+fontconfig
 fzf
 gawk
 gh
@@ -18,4 +19,5 @@ tig
 tldr
 tmux
 tree
+unzip
 zsh

@@ -18,11 +18,27 @@ case "$OS" in
   Darwin)
     echo "Installing Homebrew packages..."
     xargs brew install < ./homebrew/leaves.txt
+
+    echo "Installing Homebrew font casks..."
+    brew tap homebrew/cask-fonts
+    if ! brew list --cask font-jetbrains-mono-nerd-font >/dev/null 2>&1; then
+      brew install --cask font-jetbrains-mono-nerd-font
+    else
+      echo "font-jetbrains-mono-nerd-font is already installed."
+    fi
     FISH_PATH="/opt/homebrew/bin/fish"
     ;;
   Linux)
     echo "Running apt installer..."
     bash ./apt/install.sh
+
+    echo "Installing JetBrainsMono Nerd Font..."
+    mkdir -p ~/.local/share/fonts
+    curl -fLo ~/.local/share/fonts/JetBrainsMonoNerdFont.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+    unzip -o ~/.local/share/fonts/JetBrainsMonoNerdFont.zip -d ~/.local/share/fonts/
+    rm ~/.local/share/fonts/JetBrainsMonoNerdFont.zip
+    fc-cache -f -v
+
     FISH_PATH="/usr/bin/fish"
     ;;
   *)

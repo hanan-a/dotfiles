@@ -18,7 +18,10 @@ sudo apt install -y neovim
 
 echo "==> Installing eza (official deb repo)..."
 sudo mkdir -p /etc/apt/keyrings
-wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+TMP_KEYRING="$(mktemp)"
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | gpg --dearmor > "$TMP_KEYRING"
+sudo install -m 644 "$TMP_KEYRING" /etc/apt/keyrings/gierens.gpg
+rm -f "$TMP_KEYRING"
 echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
 sudo chmod 644 /etc/apt/keyrings/gierens.gpg
 sudo apt update
