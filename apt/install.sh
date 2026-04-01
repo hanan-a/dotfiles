@@ -27,6 +27,13 @@ sudo chmod 644 /etc/apt/keyrings/gierens.gpg
 sudo apt update
 sudo apt install -y eza
 
+echo "==> Upgrading fzf from GitHub (apt ships an outdated version)..."
+FZF_VERSION=$(curl -sSL "https://api.github.com/repos/junegunn/fzf/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -sSLo /tmp/fzf.tar.gz "https://github.com/junegunn/fzf/releases/latest/download/fzf-${FZF_VERSION}-linux_amd64.tar.gz"
+tar -xzf /tmp/fzf.tar.gz -C /tmp fzf
+sudo install /tmp/fzf /usr/local/bin/fzf
+rm /tmp/fzf.tar.gz /tmp/fzf
+
 echo "==> Installing starship..."
 if ! command -v starship &>/dev/null; then
   curl -sS https://starship.rs/install.sh | sh -s -- -y
@@ -87,7 +94,7 @@ fi
 echo "==> Installing carapace..."
 if ! command -v carapace &>/dev/null; then
   CARAPACE_VERSION=$(curl -sSL "https://api.github.com/repos/carapace-sh/carapace-bin/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-  curl -sSLo /tmp/carapace.tar.gz "https://github.com/carapace-sh/carapace-bin/releases/latest/download/carapace-bin_linux_amd64.tar.gz"
+  curl -sSLo /tmp/carapace.tar.gz "https://github.com/carapace-sh/carapace-bin/releases/download/v${CARAPACE_VERSION}/carapace-bin_${CARAPACE_VERSION}_linux_amd64.tar.gz"
   tar -xzf /tmp/carapace.tar.gz -C /tmp
   sudo install /tmp/carapace /usr/local/bin/carapace
   rm /tmp/carapace.tar.gz /tmp/carapace
@@ -96,6 +103,11 @@ fi
 echo "==> Installing pyenv..."
 if ! command -v pyenv &>/dev/null; then
   curl https://pyenv.run | bash
+fi
+
+echo "==> Installing thefuck via pipx (apt version is broken on Python 3.12+)..."
+if ! command -v thefuck &>/dev/null; then
+  pipx install thefuck
 fi
 
 echo "==> Installing docker-compose plugin..."

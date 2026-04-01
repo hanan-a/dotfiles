@@ -21,12 +21,14 @@ end
 
 set -g fish_greeting
 
-# Set up fzf key bindings
-fzf --fish | source
+# Set up fzf key bindings (requires fzf 0.46+; older versions use the fzf.fish plugin)
+fzf --fish 2>/dev/null | source
 
 fish_vi_key_bindings
 custom_functions
-starship init fish | source
+if type -q starship
+    starship init fish | source
+end
 zoxide init fish | source
 
 # Load directory-specific configurations
@@ -38,11 +40,15 @@ end
 # Load directory-specific configs on initial shell startup
 _load_directory_specific
 
-thefuck --alias | source
+if type -q thefuck
+    thefuck --alias 2>/dev/null | source
+end
 
 # Set up carapace for autocompletion
-set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-carapace _carapace | source
+if type -q carapace
+    set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+    carapace _carapace fish | source
+end
 
 # LM Studio CLI
 if test -d "$HOME/.lmstudio/bin"

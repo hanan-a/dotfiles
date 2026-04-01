@@ -82,5 +82,12 @@ echo "Installing nvm.fish via Fisher..."
 "$FISH_PATH" -c 'fisher install jorgebucaran/nvm.fish'
 echo "Setting NVM default version to 18..."
 "$FISH_PATH" -c 'set --universal nvm_default_version 18'
+echo "Installing Node 18 via nvm..."
+"$FISH_PATH" -c 'nvm install 18'
+
+if [ "$OS" = "Linux" ]; then
+  echo "Resetting macOS-specific fish universal variables..."
+  "$FISH_PATH" -c 'set --universal fish_user_paths'
+fi
 
 echo "Dotfiles installation complete. Enjoy!"

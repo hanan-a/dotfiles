@@ -14,7 +14,6 @@ pipx
 python3-venv
 ripgrep
 stow
-thefuck
 tig
 tldr
 tmux
