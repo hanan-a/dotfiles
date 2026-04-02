@@ -20,3 +20,4 @@ tmux
 tree
 unzip
 zsh
+lazygit
