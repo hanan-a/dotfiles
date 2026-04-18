@@ -1,0 +1,14 @@
+# Variables:
+#
+# {{ repo_path }} — absolute path to the repository (e.g., /Users/me/code/myproject)
+# {{ repo }} — repository directory name (e.g., myproject)
+# {{ branch }} — raw branch name (e.g., feature/auth)
+# {{ branch | sanitize }} — filesystem-safe: / and \ become - (e.g., feature-auth)
+# {{ branch | sanitize_db }} — database-safe: lowercase, underscores, hash suffix (e.g., feature_auth_x7k)
+
+# Place worktrees as siblings inside the bare repo umbrella directory.
+# Matches the bare-repo pattern: ad-player/.bare + ad-player/main, ad-player/feat, etc.
+# For a branch like "feature/auth", sanitize produces "feature-auth".
+
+# Doesn't work
+# worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
