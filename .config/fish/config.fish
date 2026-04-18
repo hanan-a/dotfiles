@@ -69,3 +69,8 @@ end
 if test -d "$HOME/.antigravity/antigravity/bin"
     fish_add_path $HOME/.antigravity/antigravity/bin
 end
+
+# Obsidian CLI
+if test -d "/Applications/Obsidian.app/Contents/MacOS"
+    fish_add_path /Applications/Obsidian.app/Contents/MacOS
+end
